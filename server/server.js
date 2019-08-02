@@ -41,8 +41,8 @@ app.post('/report', upload.array('myFiles', 12), (req, res) => {
   const files = req.files.map(file => file.filename);
   const id = req.id;
   const date = (new Date()).toString();
-  const { userId, title, body, geolocation } =  req.body;
-  const report = { id, date, userId, title, body, geolocation, files };
+  const { userId, title, body, lat, lng } =  req.body;
+  const report = { id, date, userId, title, body, lat, lng, files };
   reportsData.push(report);
   db.sendData('server/database/reports.json', reportsData);
   res.status(200).send('Report Accepted');
