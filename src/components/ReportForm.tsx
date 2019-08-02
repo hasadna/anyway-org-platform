@@ -1,6 +1,6 @@
 import React from "react";
 
-const Report: React.FC<{ lat: number; lng: number }> = ({ lat, lng }) => {
+const ReportForm: React.FC<{ lat: number; lng: number }> = ({ lat, lng }) => {
   return (
     <div
       className="text-left border shadow bg-light p-2"
@@ -53,4 +53,4 @@ const Report: React.FC<{ lat: number; lng: number }> = ({ lat, lng }) => {
   );
 };
 
-export default Report;
+export default ReportForm;

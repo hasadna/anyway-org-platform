@@ -5,19 +5,16 @@ interface IProps {
   setLng: React.Dispatch<number>;
   setLat: React.Dispatch<number>;
   onClick: React.EventHandler<React.MouseEvent>;
-  onKeyDown: React.EventHandler<React.KeyboardEvent>;
 }
 
-const Map: React.FC<IProps> = ({ setLng, setLat, onClick, onKeyDown }) => {
+const Map: React.FC<IProps> = ({ setLng, setLat, onClick }) => {
   const [map, setMap] = useState();
   const [maps, setMaps] = useState();
   const [marker, setMarker] = useState();
 
   useEffect(() => {
     if (maps) {
-      const marker = new maps.Marker({
-        map
-      });
+      const marker = new maps.Marker({ map });
       setMarker(marker);
     }
   }, [maps, map]);

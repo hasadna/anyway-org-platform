@@ -1,6 +1,6 @@
 import React from "react";
 
-const Fav = () => {
+const Bookmark = () => {
   return (
     <div
       className="border shadow bg-light p-2"
@@ -11,4 +11,4 @@ const Fav = () => {
   );
 };
 
-export default Fav;
+export default Bookmark;
