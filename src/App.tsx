@@ -9,6 +9,7 @@ const App = () => {
   const [lng, setLng] = useState(0);
   const [lat, setLat] = useState(0);
   const [isDrawerOpen, toggleDrawer] = useDrawer();
+  const [favorite, setFavorite] = useState(false);
 
   return (
     <div className="App d-flex">
@@ -17,7 +18,12 @@ const App = () => {
         onClose={toggleDrawer(false)}
         onOpen={toggleDrawer(true)}
       >
-        <Report lng={lng} lat={lat} />
+        <Report
+          lng={lng}
+          lat={lat}
+          favorite={favorite}
+          setFavorite={setFavorite}
+        />
       </SwipeableDrawer>
       <Map
         setLng={setLng}

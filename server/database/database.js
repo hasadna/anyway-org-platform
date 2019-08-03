@@ -1,7 +1,6 @@
 /*
   *** temporary db on server ***
 */
-'use strict';
 
 const fs = require('fs');
 const multer = require('multer');
@@ -24,9 +23,26 @@ exports.getData = (path = './server/database/reports.json') => {
 };
 
 /*
+  * get files array from db
+*/
+exports.getFiles = (path = './server/database/uploads/') => {
+  let filesArray = [];
+  try {
+    filesArray = fs.readdirSync(path);
+  } catch (err) {
+    if (err.code === 'ENOENT') {
+      console.log('File not found!');
+    } else {
+      throw err;
+    }
+  }
+  return filesArray;
+};
+
+/*
   * set reports array to db
 */
-exports.sendData = (file, data) => {
+exports.sendData = (data, file = 'server/database/reports.json') => {
   fs.writeFile(file, JSON.stringify(data, null, 2), (err) => {
     if (err) {
       console.error(err.message);
@@ -34,6 +50,29 @@ exports.sendData = (file, data) => {
       console.log('The file is updated!');
     }
   });
+};
+
+/*
+  * remove files from db
+*/
+exports.deleteFiles = (files, path = './server/database/uploads/') => {
+  (function deleteFile() {
+    if (!files) {
+      return;
+    }
+    const file = files[files.length - 1];
+    fs.unlink(`${path}${file}`, (err) => {
+      if (err) {
+        console.error(err.message);
+      } else {
+        console.log(`File ${file} removed!`);
+        if (files.length > 1) {
+          files.pop();
+          return deleteFile(files);
+        }
+      }
+    });
+  })();
 };
 
 /*

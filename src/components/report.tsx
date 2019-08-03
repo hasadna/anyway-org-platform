@@ -1,9 +1,15 @@
-import React, { SyntheticEvent, useState } from 'react';
+import React, {SyntheticEvent, useState} from 'react';
 
-const Report: React.FC<{ lat: number; lng: number }> = ({ lat, lng }) => {
+interface IProps {
+  lng: number;
+  lat: number;
+  favorite: boolean;
+  setFavorite: React.Dispatch<boolean>;
+}
+
+const Report: React.FC<IProps> = ({ lat, lng, favorite, setFavorite }) => {
   const [title, setTitle] = useState('');
   const [body, setBody] = useState('');
-  const [files, setFiles] = useState();
   const [buttonEnable, setButtonEnable] = useState(false);
 
   const handleChange = (event: SyntheticEvent) => {
@@ -16,9 +22,6 @@ const Report: React.FC<{ lat: number; lng: number }> = ({ lat, lng }) => {
         break;
       case 'body':
         setBody(value);
-        break;
-      case 'myFiles':
-        setFiles(target.files);
         break;
     }
   };
@@ -49,6 +52,10 @@ const Report: React.FC<{ lat: number; lng: number }> = ({ lat, lng }) => {
     setButtonEnable(false);
   };
 
+  const handleFavClick = () => {
+    setFavorite(!favorite);
+  };
+
   return (
     <div
       className="text-left border shadow bg-light p-2"
@@ -62,7 +69,11 @@ const Report: React.FC<{ lat: number; lng: number }> = ({ lat, lng }) => {
       {lng && <p className="my-0">קו אורך - {lng.toFixed(2)}</p>}
       {lng && (
         <p>
-          הוסף נקודה למועדפים <i className="far fa-star" />
+          הוסף נקודה למועדפים
+          <i
+            className={ favorite ? "far fa-star fav-star" : "far fa-star" }
+            onClick={handleFavClick}
+          />
         </p>
       )}
 

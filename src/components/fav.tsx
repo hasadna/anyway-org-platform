@@ -1,6 +1,8 @@
 import React from "react";
 
-const Fav = () => {
+interface IProps {}
+
+const Fav: React.FC<IProps> = () => {
   return (
     <div
       className="border shadow bg-light p-2"
