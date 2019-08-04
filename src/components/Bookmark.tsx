@@ -2,7 +2,7 @@ import React from "react";
 
 interface IProps {}
 
-const Fav: React.FC<IProps> = () => {
+const Bookmark: React.FC<IProps> = () => {
   return (
     <div
       className="border shadow bg-light p-2"
@@ -13,4 +13,4 @@ const Fav: React.FC<IProps> = () => {
   );
 };
 
-export default Fav;
+export default Bookmark;
