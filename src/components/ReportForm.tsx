@@ -3,11 +3,11 @@ import React, {SyntheticEvent, useState} from 'react';
 interface IProps {
   lng: number;
   lat: number;
-  favorite: boolean;
-  setFavorite: React.Dispatch<boolean>;
+  bookmark: boolean;
+  setBookmark: React.Dispatch<boolean>;
 }
 
-const Report: React.FC<IProps> = ({ lat, lng, favorite, setFavorite }) => {
+const ReportForm: React.FC<IProps> = ({ lat, lng, bookmark, setBookmark }) => {
   const [title, setTitle] = useState('');
   const [body, setBody] = useState('');
   const [buttonEnable, setButtonEnable] = useState(false);
@@ -52,8 +52,8 @@ const Report: React.FC<IProps> = ({ lat, lng, favorite, setFavorite }) => {
     setButtonEnable(false);
   };
 
-  const handleFavClick = () => {
-    setFavorite(!favorite);
+  const handleBookmarkClick = () => {
+    setBookmark(!bookmark);
   };
 
   return (
@@ -71,8 +71,8 @@ const Report: React.FC<IProps> = ({ lat, lng, favorite, setFavorite }) => {
         <p>
           הוסף נקודה למועדפים
           <i
-            className={ favorite ? "far fa-star fav-star" : "far fa-star" }
-            onClick={handleFavClick}
+            className={ bookmark ? "far fa-star fav-star" : "far fa-star" }
+            onClick={handleBookmarkClick}
           />
         </p>
       )}
@@ -127,4 +127,4 @@ const Report: React.FC<IProps> = ({ lat, lng, favorite, setFavorite }) => {
   );
 };
 
-export default Report;
+export default ReportForm;
